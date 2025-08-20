@@ -21,9 +21,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Pinata API credentials
-api_key = "54e8978af30661887cf9"
-api_secret = "9f062785828ab44b5a4d86155257ddea5c8ccad1dee910e60184687895ebe4b6"
-pinata_endpoint = "https://api.pinata.cloud/pinning/pinFileToIPFS"
+api_key = "yourkey"
+api_secret = "yourkey"
+pinata_endpoint = "endpoint"
 
 # Define the User and Certificate models
 class User(db.Model):
@@ -221,3 +221,4 @@ def logout():
 # Run the Flask app
 if __name__ == '__main__':
     app.run(debug=True)
+
