@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gradient-to-r from-purple-500 to-orange-500 min-h-screen flex items-center justify-center"
+  >
+    <!-- Main Container -->
+    <div class="w-full max-w-4xl bg-white rounded-lg shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-gray-800 text-center mb-4">
+        Welcome, {{ user.username }}!
+      </h2>
+      <p class="text-lg text-gray-600 text-center mb-6">
+        Total Reward Points:
+        <span class="font-semibold text-purple-500"
+          >{{ user.reward_points or 0 }}</span
+        >
+      </p>
+
+      <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+        Your Certificates:
+      </h3>
+
+      {% if user.certificates %}
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr class="bg-gray-200 text-gray-700">
+              <th class="py-3 px-4 border-b">Certificate Name</th>
+              <th class="py-3 px-4 border-b">Reward Points</th>
+              <th class="py-3 px-4 border-b">Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for certificate in user.certificates %}
+            <tr class="hover:bg-gray-100">
+              <td class="py-3 px-4 border-b text-center">
+                {{ certificate.certificate_name }}
+              </td>
+
+              <td class="py-3 px-4 border-b text-center">
+                {{ certificate.points }}
+              </td>
+              <td class="py-3 px-4 border-b text-center">
+                <a
+                  href="https://gateway.pinata.cloud/ipfs/{{ certificate.cid }}"
+                  target="_blank"
+                  class="text-purple-600 hover:underline"
+                >
+                  {{ certificate.certificate_name }}
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="text-gray-600 text-center mt-4">No certificates found.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white min-h-screen flex items-center justify-center">
+    <!-- Main Container -->
+    <div
+      class="flex w-full max-w-6xl shadow-lg bg-white rounded-lg overflow-hidden border border-gray-300"
+    >
+      <!-- Left Section: Registration Form -->
+      <div class="w-full md:w-1/2 p-6 md:p-12 border-r border-gray-300">
+        <h1 class="text-2xl font-bold text-gray-800 text-center mb-6">
+          Register
+        </h1>
+
+        <!-- Display Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <div class="mb-4">
+          {% for category, message in messages %}
+          <div
+            class="bg-{{ category }}-200 text-{{ category }}-800 p-2 rounded-lg mb-2"
+          >
+            {{ message }}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+
+        <!-- Registration Form -->
+        <form action="{{ url_for('register') }}" method="POST">
+          <div class="mb-4">
+            <label for="username" class="block text-gray-700 font-medium mb-2"
+              >Username</label
+            >
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="border border-gray-300 rounded-lg p-3 w-full"
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+          <div class="mb-6">
+            <label for="password" class="block text-gray-700 font-medium mb-2"
+              >Password</label
+            >
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="border border-gray-300 rounded-lg p-3 w-full"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="bg-purple-500 text-white p-3 rounded-lg w-full hover:bg-purple-600"
+          >
+            Register
+          </button>
+        </form>
+
+        <p class="text-center text-gray-600 text-sm mt-4">
+          Already have an account?
+          <a
+            href="{{ url_for('login') }}"
+            class="text-purple-500 hover:underline"
+            >Login here</a
+          >
+        </p>
+      </div>
+
+      <!-- Right Section: Welcome Message -->
+      <div
+        class="hidden md:block md:w-1/2 bg-gradient-to-r from-purple-500 to-orange-500 text-white p-12 border-l border-gray-300"
+      >
+        <div class="flex items-center justify-center h-full">
+          <div class="text-center">
+            <h1 class="text-3xl font-bold">
+              Welcome to Our One-Spot Certificate Station
+            </h1>
+            <p class="mt-4 text-lg">
+              Your one-stop solution for managing and accessing all your
+              certifications.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

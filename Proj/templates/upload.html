@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificate Upload</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gradient-to-r from-purple-500 to-orange-500 min-h-screen flex items-center justify-center"
+  >
+    <div class="bg-white shadow-lg rounded-lg p-8 w-96 border border-blue-500">
+      <!-- Added border -->
+      <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">
+        Certificate Upload
+      </h1>
+      <!-- Changed heading -->
+
+      <!-- Display Flash Messages -->
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul class="mb-4">
+        {% for message in messages %}
+        <li class="text-red-500">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+
+      <form method="POST" enctype="multipart/form-data">
+        <div class="mb-4">
+          <label for="name" class="block text-gray-700 font-medium mb-2"
+            >File Name:</label
+          >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-purple-500"
+            placeholder="Enter file name"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="category" class="block text-gray-700 font-medium mb-2"
+            >Category:</label
+          >
+          <select
+            id="category"
+            name="category"
+            required
+            class="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-purple-500"
+          >
+            <option value="Blockchain">Blockchain</option>
+            <option value="NPTEL">NPTEL</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Web Development">Web Development</option>
+            <option value="Cybersecurity">Cybersecurity</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label for="file" class="block text-gray-700 font-medium mb-2"
+            >Choose file:</label
+          >
+          <input
+            type="file"
+            id="file"
+            name="file"
+            required
+            class="border border-gray-300 rounded-lg p-2 w-full focus:ring-2 focus:ring-purple-500"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="bg-purple-500 text-white p-2 rounded-lg w-full hover:bg-purple-600 transition duration-200"
+        >
+          Upload
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
